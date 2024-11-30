@@ -28,6 +28,7 @@ from .rest import RESTImpl
 from .gateway import Gateway
 from .http_bot import HTTPBot
 from .exceptions import NotEnoughPermissions
+from .cogs import CogLoader, Cog, command
 
 __all__ = (
     "InteractionContext",
@@ -40,5 +41,8 @@ __all__ = (
     "RESTImpl",
     "Gateway",
     "HTTPBot",
-    "NotEnoughPermissions"
+    "NotEnoughPermissions",
+    "CogLoader",
+    "Cog",
+    "command"
 )

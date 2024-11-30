@@ -4,3 +4,4 @@ __pycache__
 est.py
 tests.py
 .env
+*tests*
