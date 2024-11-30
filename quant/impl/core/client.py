@@ -184,11 +184,14 @@ class Client:
 
     def _decode_token_to_id(self) -> int:
         first_token_part = self.token.split('.')[0]
-        token = first_token_part[4:] \
-            if first_token_part.startswith('Bot') \
-            else first_token_part
+        token = first_token_part[4:] if first_token_part.startswith('Bot') else first_token_part
         decoded_token = base64.b64decode(token + "==")
-        return int(decoded_token.decode("utf8"))
+
+        try:
+            return int(decoded_token.decode("utf8"))
+        except UnicodeDecodeError:
+            return int.from_bytes(decoded_token, 'big')
+
 
     async def _run_one_shard(self, shard_count: int, shard_id: int, loop: asyncio.AbstractEventLoop) -> Shard:
         BaseModel.set_client(self)
